@@ -33,17 +33,21 @@ databases-problems/
    ```
 
 3. **Acceder a pgAdmin**
-   - Abrir navegador en: http://localhost:8080
-   - Email: admin@empresa.com
-   - Contraseña: admin123
+   - Abrir navegador en: **http://localhost:8080**
+   - Email: `admin@empresa.com`
+   - Contraseña: `admin123`
 
 4. **Conectar a la base de datos en pgAdmin**
-   - Crear nueva conexión
-   - Host: postgres (nombre del servicio)
-   - Puerto: 5432
-   - Base de datos: empresa_db
-   - Usuario: admin
-   - Contraseña: admin123
+   - Después del login, hacer clic en "Add New Server"
+   - En la pestaña "General":
+     - Name: `Empresa DB` (nombre descriptivo)
+   - En la pestaña "Connection":
+     - Host name/address: `postgres`
+     - Port: `5432`
+     - Database: `empresa_db`
+     - Username: `admin`
+     - Password: `admin123`
+   - Hacer clic en "Save"
 
 ## Estructura de la Base de Datos
 
@@ -135,4 +139,35 @@ Este proyecto está diseñado para:
 - Los datos se crean automáticamente al iniciar el contenedor
 - La base de datos persiste entre reinicios del contenedor
 - Para empezar desde cero, usar `docker-compose down -v`
-- El puerto 5432 está expuesto para conexiones externas si es necesario
+- PostgreSQL está disponible en el puerto 5432, pgAdmin en el puerto 8080
+
+## Solución de Problemas
+
+### Si ves Adminer en lugar de pgAdmin
+- Asegúrate de acceder a **http://localhost:8080** (puerto correcto)
+- Si el puerto 8080 está ocupado, cambiar el puerto en docker-compose.yml
+
+### Si hay errores de puerto ocupado
+```bash
+# Detener todos los servicios
+docker-compose down
+
+# Cambiar puertos en docker-compose.yml si es necesario
+# Luego reiniciar
+docker-compose up -d
+```
+
+### Si no puedes conectar a la base de datos
+- Verificar que ambos contenedores estén ejecutándose: `docker-compose ps`
+- Usar exactamente estos valores en pgAdmin:
+  - Host: `postgres`
+  - Port: `5432` (interno del contenedor)
+  - Username: `admin` (no el email)
+  - Password: `admin123`
+
+### Si ves errores de React en la consola del navegador
+- **Error #200**: Es un problema común de pgAdmin con Chrome
+- **Solución**: Limpiar caché del navegador (`Ctrl + Shift + Delete`)
+- **Alternativa**: Usar Firefox o Edge
+- **Otra opción**: Abrir en modo incógnito/privado
+- **Nota**: El error no impide el funcionamiento de pgAdmin
