@@ -1,0 +1,90 @@
+use Tienda
+db.Productos.insertMany([
+  {
+    nombre: "Laptop",
+    precio: 1200.5,             
+    stock: 10,                   
+    activo: true,                
+    categorias: ["tecnología", "computación"],
+    fechaIngreso: new Date(),    
+    proveedor: { nombre: "TechCorp", pais: "USA" },
+    descuento: null              
+  },
+  {
+    nombre: "Mouse",
+    precio: 45.99,
+    stock: 50,
+    activo: true,
+    categorias: ["tecnología", "accesorios"],
+    fechaIngreso: new Date(),
+    proveedor: { nombre: "GameX", pais: "China" },
+    descuento: 0
+  },
+  {
+    nombre: "Escritorio",
+    precio: 250.75,
+    stock: 5,
+    activo: true,
+    categorias: ["muebles"],
+    fechaIngreso: new Date(),
+    proveedor: { nombre: "Muebles SA", pais: "Uruguay" },
+    descuento: null
+  },
+  {
+    nombre: "Silla",
+    precio: 180.00,
+    stock: 0,
+    activo: false,
+    categorias: ["muebles"],
+    fechaIngreso: new Date(),
+    proveedor: { nombre: "ComfyWork", pais: "Brasil" }
+  },
+  {
+    nombre: "Teclado",
+    precio: 120.00,
+    stock: 15,
+    activo: true,
+    categorias: ["tecnología", "accesorios"],
+    proveedor: { nombre: "TechCorp", pais: "USA" },
+    fechaIngreso: new Date()
+  },
+  {
+    nombre: "Monitor",
+    precio: 350,
+    stock: 8,
+    activo: true,
+    categorias: ["tecnología"],
+    proveedor: { nombre: "VisionCorp", pais: "Japón" },
+    fechaIngreso: new Date()
+  },
+  {
+    nombre: "Impresora",
+    precio: 290.5,
+    stock: 6,
+    activo: true,
+    fechaIngreso: new Date(),
+    categorias: ["tecnología", "oficina"]
+  },
+  {
+    nombre: "Auriculares",
+    precio: 85,
+    stock: 30,
+    activo: true,
+    categorias: ["tecnología", "audio"],
+    garantiaMeses: 12
+  },
+  {
+    nombre: "Webcam",
+    precio: 55.3,
+    stock: 25,
+    activo: true,
+    categorias: ["tecnología", "video"]
+  },
+  {
+    nombre: "Parlantes",
+    precio: 75.1,
+    stock: 0,
+    activo: false,
+    categorias: ["audio"]
+  }
+]);
