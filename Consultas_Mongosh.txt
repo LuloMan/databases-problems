@@ -1,0 +1,40 @@
+----CONSULTAS BÁSICAS con find()----
+
+Mostrar todos los estudiantes
+db.estudiantes.find()
+
+Mostrar estudiantes con edad mayor o igual a 18
+db.estudiantes.find({edad:{$gte:18}})
+
+Mostrar estudiantes cuyo element sea 'sound'
+db.estudiantes.find({ element:"sound"})
+
+Mostrar estudiantes cuya edad esté entre 18 y 25 inclusive
+db.estudiantes.find({edad:{$gte:18, $lte:25}})
+
+
+----ORDENAMIENTO con sort()----
+
+Ordenar por edad de menor a mayor
+db.estudiantes.find().sort({edad:1})
+
+Ordenar por edad de mayor a menor
+db.estudiantes.find().sort({edad:-1})
+
+Ordenar alfabéticamente por nombre (A → Z)
+db.estudiantes.find().sort({nombre:1})
+
+
+----LÍMITES con limit()----
+
+Mostrar los primeros 3 estudiantes ordenados por edad de mayor a menor
+db.estudiantes.find().sort({edad:-1}).limit(3)
+
+
+----PROYECCIÓN de campos----
+
+Mostrar todos los estudiantes pero solo nombre y edad, ocultando _id y element
+db.estudiantes.find({}, {_id:false, nombre:1, edad:1})
+
+Mostrar solo los nombres de estudiantes menores de 21 años
+db.estudiantes.find({edad:{$lt:21}},{_id:false, nombre:1})
