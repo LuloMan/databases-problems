@@ -1,0 +1,51 @@
+----Updates con $set----
+
+Asignar el campo status con valor "activo" a todos los documentos
+db.estudiantes.updateMany({}, {$set:{status:"activo"}})
+
+Modificar un documento buscándolo por nombre y actualizar la edad
+db.estudiantes.updateOne({nombre:"Kamado Tanjiro"}, {$set:{edad:21}})
+
+Asignar status: "menor" a todos los estudiantes cuya edad sea menor a 18
+db.estudiantes.updateMany({edad:{$lt:18}}, {$set:{status:"menor"}})
+
+
+----Updates con $unset----
+
+Eliminar un campo de todos los elementos de la colección
+db.estudiantes.updateMany({}, {$unset:{nombre:""}})
+
+Eliminar el campo edad únicamente para el estudiante cuyo element sea "chambeador"
+db.estudiantes.updateOne({element:"chambeador"}, {$unset:{edad:""}})
+
+Mostrar todos los estudiantes luego de los updates
+db.estudiantes.find()
+
+
+----Investigación: Operador $exists----
+
+Es una consulta que permite verificar si un campo existe o no dentro de un documento, incluyendo campos con
+valor nulo. Se usa para filtrar documentos sin importar su contenido, es util para consultar bases de datos que
+evolucionen, por ejemplo si faltan campos en documentos antiguos y validaciones de integridad de datos.
+
+Sintaxis básica:
+{campo:{$exists:true}}
+{campo:{$exists:false}}
+
+Diferencias entre $exists: true y $exists: false:
+$exists: true devuelve documentos que sí tienen el campo, incluso si el valor es null.
+$exists: false devuelve documentos que no poseen el campo en absoluto.
+
+
+----Verificaciones----
+
+Buscar estudiantes que tengan definido el campo status
+db.estudiantes.find({status:{$exists:true}})
+
+Buscar estudiantes que no tengan definido el campo edad
+db.estudiantes.find({edad:{$exists:false}})
+
+Buscar estudiantes que tengan element definido y cuya edad sea mayor a 20
+db.estudiantes.find({element:{$exists:true}, edad:{$gt:20}})
+
+
