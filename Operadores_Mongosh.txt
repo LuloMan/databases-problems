@@ -1,0 +1,43 @@
+----Consultas con operadores de comparación----
+
+Mostrar todos los estudiantes cuya edad sea mayor a 18 usando $gt
+db.estudiantes.find({age:{$gt:18}})
+
+Mostrar los estudiantes cuya edad esté entre 18 y 25 inclusive usando $gte y $lte
+db.estudiantes.find({age:{$gte:18, $lte:25}})
+
+Mostrar los estudiantes cuya edad sea distinta de 20 utilizando $ne
+db.estudiantes.find({age:{$ne:20}})
+
+Buscar un estudiante por nombre exacto usando $eq
+db.estudiantes.find({name:{$eq:"Kamado Tanjiro"}})
+
+
+----Investigación Operadores----
+
+Los operadores son instrucciones especiales que se usan dentro de las consultas para comparar valores, 
+filtrar documentos, evaluar condiciones y manipular datos. Especificamente los operadores de comparación
+se usan para comparar valores dentro de un campo y devolver solo los documentos que cumplen esa condición.
+Ejemplos: $gt (mayor que), $lt (menor que), $ne (distinto), $gte / $lte (mayor/menor o igual), $in(dentro)
+y $nin(fuera).
+
+Especificamente $in y $nin son operadores de comparación que en el caso de $in devuelve documentos
+cuyo valor coincide con cualquiera de los valores del arreglo. Mientras que $nin devuelve documentos
+cuyo valor no coincide con ninguno de los valores del arreglo. Son útiles cuando querés buscar por un 
+conjunto de posibles valores.
+
+Los operadores de lógicos permiten combinar múltiples condiciones dentro de una misma consulta, sirven 
+para crear filtros más complejos. Funcionan parecido a cómo usamos AND, OR y NOT en expresiones lógicas, pero
+aplicados a filtros de documentos. Ejemplos: $and(y), $or(o), $not(negar) y $nor(exlución).
+
+
+----Consultas con $in y $nin----
+
+Buscar todos los estudiantes cuyo element esté dentro del conjunto ["water", "sound", "mist"] utilizando $in
+db.estudiantes.find({element:{$in:["water", "sound", "mist"]}})
+
+Buscar todos los estudiantes cuyo element no esté dentro del conjunto ["water", "sound"] utilizando $nin
+db.estudiantes.find({element:{$nin:["water", "sound"]}})
+
+
+
